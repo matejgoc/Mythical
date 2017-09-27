@@ -1,0 +1,93 @@
+import random
+
+print("Welcome to Mythical Breeder")
+
+unicorn={"test":["m","A a","B b","C c"],"testa":["f","A a","B b","C c"],"tester":["m","a a","b b","c c"]}
+
+def checkname(x):
+    if x not in unicorn:
+        return x
+    else:
+        y= input("You already have a unicorn with the same name!")
+        if y not in unicorn:
+            return y
+        else:
+            z=checkname(x)
+            return z
+
+    
+def AA(x):
+    if unicorn[x][1] == "a a":
+        coat = "white"
+    if unicorn[x][1] == "A a":
+        coat = "pink"
+    if unicorn[x][1] == "a A":
+        coat = "teal"
+    if unicorn[x][1] == "A A":
+        coat = "rainbow"
+
+    return coat
+
+def BB(x):
+    if unicorn[x][2] == "b b":
+        mane = "blue"
+    if unicorn[x][2] == "B b":
+        mane = "purple"
+    if unicorn[x][2] == "b B":
+        mane = "burgundy"
+    if unicorn[x][2] == "B B":
+        mane = "red"
+
+    return mane
+
+def CC(x):
+    if unicorn[x][3] == "c c":
+        horn = "braided"
+    if unicorn[x][3] == "C c":
+        horn = "swirled"
+    if unicorn[x][3] == "c C":
+        horn = "twisted"
+    if unicorn[x][3] == "C C":
+        horn = "curved"
+        
+    return horn
+
+
+def chara(x):
+    gender = "female"
+    coat=AA(x)
+    mane=BB(x)
+    horn=CC(x)
+
+    if unicorn[x][0] == "m":
+        gender = "male"
+    
+    print(x,"is a", gender, "unicorn, with", coat,"colored coat and a",mane,"colored mane and a", horn, "horn.")
+
+def breed(x,y):
+    if unicorn[x][0] == unicorn[y][0]:
+        print("You cannot breed two of the same genders")
+    else:
+        new=[]
+
+        gender=["m","f"]
+        new.append(random.choice(gender))
+
+        woop = [1,2,3]
+        for item in woop:
+            a= unicorn[x][item].split(" ")
+            allele1=random.choice(a)
+            b = unicorn[y][item].split(" ")
+            allele2=random.choice(b)
+            allele3=allele1 +" "+ allele2
+            new.append(allele3)
+
+        print("What would you like to name the unicorn?")
+        nam = input()
+        name =checkname(nam)
+        unicorn[name] =new
+        print(unicorn[name])
+        chara(name)
+        
+
+breed("test","testa")
